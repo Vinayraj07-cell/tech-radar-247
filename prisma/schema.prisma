@@ -1,0 +1,45 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model TechOpportunity {
+  id              String   @id @default(cuid())
+  title           String
+  company         String
+  url             String   @unique
+  summary         String   @db.Text
+  whyItMatters    String   @db.Text
+  whatIsNew       String   @db.Text
+  visualPotential String   @db.Text
+  score           Int      // 0-100
+  status          String   // 'MAKE_NOW', 'WATCH', 'IGNORE'
+  angleA          String   @db.Text // News hook
+  angleB          String   @db.Text // "You won't believe this exists" hook
+  angleC          String   @db.Text // Hands-on demo/test hook
+  releaseDate     DateTime
+  discoveredAt    DateTime @default(now())
+  notified        Boolean  @default(false)
+
+  @@index([status])
+  @@index([score])
+  @@index([discoveredAt])
+}
+
+model RawFeedItem {
+  id           String   @id @default(cuid())
+  title        String
+  source       String
+  category     String   @default("Uncategorized")
+  url          String   @unique
+  pubDate      DateTime
+  createdAt    DateTime @default(now())
+  promotedToAI Boolean  @default(false)
+
+  @@index([createdAt])
+  @@index([promotedToAI])
+}
