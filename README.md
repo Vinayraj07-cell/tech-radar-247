@@ -1,4 +1,4 @@
-# Technology Radar 24/7 (YouTube Shorts Channel Sentinel)
+#Technology Radar 24/7 (YouTube Shorts Channel Sentinel)
 
 A production-ready autonomous 24/7 Technology Radar system built specifically for a YouTube Shorts channel.
 
